@@ -9,21 +9,39 @@ src_base = "https://github.com/embassy-rs/embassy/blob/embassy-executor-v$VERSIO
 src_base_git = "https://github.com/embassy-rs/embassy/blob/$COMMIT/embassy-executor/src/"
 features = ["nightly", "defmt", "unstable-traits", "time", "time-tick-1mhz"]
 flavors = [
-    { name = "std",                       target = "x86_64-unknown-linux-gnu",   features = ["std"] },
-    { name = "wasm",                      target = "wasm32-unknown-unknown",     features = ["wasm"] },
-    { name = "thumbv6m-none-eabi",        target = "thumbv6m-none-eabi",         features = [] },
-    { name = "thumbv7m-none-eabi",        target = "thumbv7m-none-eabi",         features = [] },
-    { name = "thumbv7em-none-eabi",       target = "thumbv7em-none-eabi",        features = [] },
-    { name = "thumbv7em-none-eabihf",     target = "thumbv7em-none-eabihf",      features = [] },
-    { name = "thumbv8m.base-none-eabi",   target = "thumbv8m.base-none-eabi",    features = [] },
-    { name = "thumbv8m.main-none-eabi",   target = "thumbv8m.main-none-eabi",    features = [] },
-    { name = "thumbv8m.main-none-eabihf", target = "thumbv8m.main-none-eabihf",  features = [] },
+  { name = "std", target = "x86_64-unknown-linux-gnu", features = [
+    "std",
+  ] },
+  { name = "wasm", target = "wasm32-unknown-unknown", features = [
+    "wasm",
+  ] },
+  { name = "thumbv6m-none-eabi", target = "thumbv6m-none-eabi", features = [
+  ] },
+  { name = "thumbv7m-none-eabi", target = "thumbv7m-none-eabi", features = [
+  ] },
+  { name = "thumbv7em-none-eabi", target = "thumbv7em-none-eabi", features = [
+  ] },
+  { name = "thumbv7em-none-eabihf", target = "thumbv7em-none-eabihf", features = [
+  ] },
+  { name = "thumbv8m.base-none-eabi", target = "thumbv8m.base-none-eabi", features = [
+  ] },
+  { name = "thumbv8m.main-none-eabi", target = "thumbv8m.main-none-eabi", features = [
+  ] },
+  { name = "thumbv8m.main-none-eabihf", target = "thumbv8m.main-none-eabihf", features = [
+  ] },
 ]
 
 [features]
 default = []
 std = ["time", "time-tick-1mhz", "embassy-macros/std"]
-wasm = ["wasm-bindgen", "js-sys", "embassy-macros/wasm", "wasm-timer", "time", "time-tick-1mhz"]
+wasm = [
+  "wasm-bindgen",
+  "js-sys",
+  "embassy-macros/wasm",
+  "wasm-timer",
+  "time",
+  "time-tick-1mhz",
+]
 
 # Enable nightly-only features
 nightly = ["embedded-hal-async"]
@@ -36,7 +54,7 @@ unstable-traits = ["embedded-hal-1"]
 # To use this you must have a time driver provided.
 defmt-timestamp-uptime = ["defmt"]
 
-# Enable `embassy_executor::time` module. 
+# Enable `embassy_executor::time` module.
 # NOTE: This feature is only intended to be enabled by crates providing the time driver implementation.
 # Enabling it directly without supplying a time driver will fail to link.
 time = []
@@ -47,6 +65,7 @@ time = []
 # If you're writing a driver and your tick rate is not listed here, please add it and send a PR!
 time-tick-32768hz = ["time"]
 time-tick-1000hz = ["time"]
+time-tick-65547hz = ["time"]
 time-tick-1mhz = ["time"]
 time-tick-16mhz = ["time"]
 
@@ -55,11 +74,11 @@ defmt = { version = "0.3", optional = true }
 log = { version = "0.4.14", optional = true }
 
 embedded-hal-02 = { package = "embedded-hal", version = "0.2.6" }
-embedded-hal-1 = { package = "embedded-hal", version = "1.0.0-alpha.8", optional = true}
-embedded-hal-async = { version = "0.1.0-alpha.1", optional = true}
+embedded-hal-1 = { package = "embedded-hal", version = "1.0.0-alpha.8", optional = true }
+embedded-hal-async = { version = "0.1.0-alpha.1", optional = true }
 
 futures-util = { version = "0.3.17", default-features = false }
-embassy-macros  = { version = "0.1.0", path = "../embassy-macros"}
+embassy-macros = { version = "0.1.0", path = "../embassy-macros" }
 atomic-polyfill = "0.1.5"
 critical-section = "0.2.5"
 cfg-if = "1.0.0"

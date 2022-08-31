@@ -71,6 +71,9 @@ const TPS: u64 = 1_000_000;
 #[cfg(feature = "time-tick-16mhz")]
 const TPS: u64 = 16_000_000;
 
+#[cfg(feature = "time-tick-65547hz")]
+const TPS: u64 = 65547;
+
 /// Ticks per second of the global timebase.
 ///
 /// This value is specified by the `time-tick-*` Cargo features, which
